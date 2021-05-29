@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -24,6 +25,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // AUTHENTICATION ROUTES
 Route::post('/register', [AuthController::class, 'register'])->name('user.create');
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');
+
+Route::get('/time', function() {
+    return Carbon::parse( '01-November-1996')->format('d-M-Y');
+});
+
 
 
 // ROUTES PROTECTED BY AUTH:SANCTUM

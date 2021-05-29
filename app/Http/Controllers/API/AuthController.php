@@ -16,12 +16,14 @@ class AuthController extends Controller
 
         $fields = $request->validate([
             'name'      => 'required|string',
-            'email'     => 'required|string|unique:users,email',
+            'last_name' => 'string',
+            'email'     => 'required|email|unique:users,email',
             'password'  => 'required|string|confirmed',
         ]);
 
         $user = User::create([
             'name'      => $fields['name'],
+            'last_name' => $fields['last_name'],
             'email'     => $fields['email'],
             'password'  => Hash::make( $fields['password'] ),
         ]);
@@ -41,16 +43,9 @@ class AuthController extends Controller
     public function login( Request $request ) {
 
         $fields = $request->validate([
-            'email'     => 'required|string',
+            'email'     => 'required|email',
             'password'  => 'required|string',
         ]);
-        
-        
-        // return response()->json([
-        //     'email' => $fields['email'],
-        //     'password' => $fields['password']
-        // ]);
-        // print_r( $fields['email'], $fields['password']);
 
         //CHECK IF EMAIL IS REGISTERED IN DB
         $user = User::where('email', $fields['email'])->first();
@@ -59,7 +54,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'ok'        => false,
-                'message'   => 'Por favor revise sus datos e intentelo nuevamente',
+                'message'   => 'Las credenciales que proporciono no coinciden, revise e intentelo nuevamente',
             ], 401);
 
         }
