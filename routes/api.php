@@ -26,9 +26,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register'])->name('user.create');
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 
-Route::get('/time', function() {
-    return Carbon::parse( '01-November-1996')->format('d-M-Y');
-});
 
 
 
