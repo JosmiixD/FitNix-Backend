@@ -22,6 +22,10 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'height',
+        'gender',
+        'level',
+        'birthday',
     ];
 
     /**
@@ -46,5 +50,9 @@ class User extends Authenticatable
 
     public function recipes() {
         return $this->hasMany('App\Models\Recipe');
+    }
+
+    public function weightLogs() {
+        return $this->hasMany('App\Models\WeightLog');
     }
 }

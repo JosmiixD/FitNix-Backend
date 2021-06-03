@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -16,7 +17,7 @@ class AuthController extends Controller
 
         $fields = $request->validate([
             'name'      => 'required|string',
-            'last_name' => 'string',
+            'last_name' => 'required|string',
             'email'     => 'required|email|unique:users,email',
             'password'  => 'required|string|confirmed',
         ]);
@@ -67,6 +68,24 @@ class AuthController extends Controller
             'user'      => $user,
             'token'     => $token,
         ], 200);
+
+    }
+
+
+    public function tokenRenew() {
+
+
+        $user = Auth::user();
+
+        $token = $user->createToken('authtoken')->plainTextToken;
+
+        return response()->json([
+            'ok'        => true,
+            'message'   => 'Token actualizado correctamente',
+            'user'      => $user,
+            'token'     => $token,
+        ], 200);
+
 
     }
 

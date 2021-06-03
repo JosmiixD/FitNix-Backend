@@ -16,35 +16,35 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name'   => 'Popular',
-            'image'  => ''
+            'image'  => '/categories/star.png'
         ]);
         Category::create([
             'name'  => 'Vegetariano',
-            'image' => 'Sencilla',
+            'image' => '/categories/vegan.png',
         ]);
         Category::create([
             'name'  => 'Pasta',
-            'image' => 'Sencilla',
+            'image' => '/categories/pasta.png',
         ]);
         Category::create([
             'name'  => 'Alto en proteina',
-            'image' => 'Sencilla',
+            'image' => '/categories/protein.png',
         ]);
         Category::create([
             'name'  => 'Sushi',
-            'image' => 'Sencilla',
+            'image' => '/categories/sushi.png',
             ]);
         Category::create([
             'name'  => 'Bebidas',
-            'image' => 'Sencilla',
+            'image' => '/categories/drink.png',
         ]);
         Category::create([
             'name'  => 'Snacks',
-            'image' => 'Sencilla',
+            'image' => '/categories/snacks.png',
         ]);
         Category::create([
             'name'  => 'Comida rapida',
-            'image' => 'Sencilla',
+            'image' => '/categories/fast.png',
         ]);
     }
         

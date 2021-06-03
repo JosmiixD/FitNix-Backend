@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 // ROUTES PROTECTED BY AUTH:SANCTUM
 Route::group(['middleware' => 'auth:sanctum'], function() {
 
-    Route::get('/prueba', function() {
-        return response([
-            'message' => 'Esta funcionando'
-        ]);
-    });
+    Route::post('/user/save-info', [UserController::class, 'saveInformation'])->name('user.save-info');
+    Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('token.renew');
 
 });
