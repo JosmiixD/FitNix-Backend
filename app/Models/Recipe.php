@@ -10,15 +10,16 @@ class Recipe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
-        'time_to_prepare'
-        'level'
-        'calories'
-        'ingredients'
-        'instructions'
-        'url_video'
-        'created_by'
-        'category_id'
+        'name', 
+        'time_to_prepare',
+        'level',
+        'calories',
+        'ingredients',
+        'instructions',
+        'url_video',
+        'status',
+        'created_by',
+        'category_id',
     ];
 
 
@@ -27,5 +28,11 @@ class Recipe extends Model
     }
     public function category() {
         return $this->belongsTo('App\Models\Category','cateogory_id','id');
+    }
+
+    public function scopeGetRecipes( $query, $name_filter, $sort,$fieldToSort ){
+        return $this->where(function($query) use ($name_filter){
+            $query->where('name','LIKE','%'.$name_filter.'%');
+        })->orderBy($fieldToSort,$sort)->get();
     }
 }

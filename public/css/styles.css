@@ -1,0 +1,23 @@
+.uppercase{
+    text-transform: uppercase;
+}
+.flex-web{
+    display: flex;
+}
+.show_mobile{
+    display: none;
+}
+.hide_mobile{
+    display: show;
+}
+@media only screen and (max-width: 769px){
+    .flex-web{
+        display: block;
+    }
+    .show_mobile{
+        display: block;
+    }
+    .hide_mobile{
+        display: none;
+    }
+}

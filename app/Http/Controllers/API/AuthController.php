@@ -29,7 +29,14 @@ class AuthController extends Controller
             'password'  => Hash::make( $fields['password'] ),
         ]);
 
+        $user->assignRole('guest');
+
         $token = $user->createToken('authtoken')->plainTextToken;
+
+        //Hide Unnecesary Fields in Role
+        $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
+        //Hide unnecesary user fields
+        $user->makeHidden(['deleted_at', 'created_at', 'updated_at', 'email_verified_at']);
 
         return response()->json([
             'ok'        => true,
@@ -61,11 +68,16 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken('authtoken')->plainTextToken;
+        //Hide Unnecesary Fields in Role
+        $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
+        //Hide unnecesary user fields
+        $user->makeHidden(['deleted_at', 'created_at', 'updated_at', 'email_verified_at']);
 
         return response()->json([
             'ok'        => true,
             'message'   => 'Continua con tus objetivos',
             'user'      => $user,
+            // 'hasInfo'   => count( $user->weightLogs ) > 0 ? true : false,
             'token'     => $token,
         ], 200);
 

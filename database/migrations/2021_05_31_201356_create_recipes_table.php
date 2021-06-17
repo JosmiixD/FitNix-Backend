@@ -22,6 +22,7 @@ class CreateRecipesTable extends Migration
             $table->text('ingredients');
             $table->text('instructions');
             $table->string('url_video');
+            $table->boolean('status')->default(0);
             $table->unsignedBigInteger('created_by');
             // $table->foreign('created_by')->references('id')->on('users');
             $table->unsignedBigInteger('category_id')->unsigned();
