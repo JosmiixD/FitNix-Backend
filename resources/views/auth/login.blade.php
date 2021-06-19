@@ -11,7 +11,8 @@
 			<div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
 				<!--begin::Logo-->
 				<a href="#" class="text-center pt-2">
-					<img src="metronic/assets/media/logos/logo.png" class="max-h-75px" alt="" />
+					{{-- <img src="metronic/assets/media/logos/logo.png" class="max-h-75px" alt="" /> --}}
+					<img src="{{  asset('images/Imagotipo-Dark.png')  }}" class="max-h-100px" alt="" />
 				</a>
 				<!--end::Logo-->
 				<!--begin::Aside body-->
@@ -99,16 +100,16 @@
 		</div>
 		<!--begin::Aside-->
 		<!--begin::Content-->
-		<div class="content order-1 order-lg-2 d-flex flex-column w-100 pb-0" style="background-color: #B1DCED;">
+		<div class="content order-1 order-lg-2 d-flex flex-column w-100 pb-0  bgi-no-repeat" style="background-image: url(images/background/login-background.jpg); background-size: cover;">
 			<!--begin::Title-->
-			<div class="d-flex flex-column justify-content-center text-center pt-lg-40 pt-md-5 pt-sm-5 px-lg-0 pt-5 px-7">
+			{{-- <div class="d-flex flex-column justify-content-center text-center pt-lg-40 pt-md-5 pt-sm-5 px-lg-0 pt-5 px-7">
 				<h3 class="display4 font-weight-bolder my-7 text-dark" style="color: #986923;">Amazing Wireframes</h3>
 				<p class="font-weight-bolder font-size-h2-md font-size-lg text-dark opacity-70">User Experience &amp; Interface Design, Product Strategy
 				<br />Web Application SaaS Solutions</p>
-			</div>
+			</div> --}}
 			<!--end::Title-->
 			<!--begin::Image-->
-			<div class="content-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(assets/media/svg/illustrations/login-visual-2.svg);"></div>
+			<div class="content-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-center bgi-position-x-center" style="background-image: url(images/Logo.png); background-size: 150px;"></div>
 			<!--end::Image-->
 		</div>
 		<!--end::Content-->

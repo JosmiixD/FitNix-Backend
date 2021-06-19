@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Web;
 
+use Carbon\Carbon;
 use App\Models\Recipe;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as Image;
 
 class RecipesController extends Controller
 {
@@ -25,7 +30,10 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        return view( 'pages.recipes.create' )->with( 'recipe', new Recipe );
+        $data = (object)[];
+        $data->categories = Category::all();
+        $data->recipe = new Recipe;
+        return view( 'pages.recipes.create', compact('data') );
     }
 
     /**
@@ -36,7 +44,65 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+
+        // if recipe has image picture
+        if ($request->hasFile('recipe_image')) {
+
+            try {
+                
+                $fields = $request->validate([
+                    'name'              => 'required|string',
+                    'time_to_prepare'   => 'string',
+                    'ingredients'       => 'required',
+                    'instructions'      => 'required',
+                ]);
+
+                $recipe = Recipe::create([
+                    'name'                  => $request['name'],
+                    'time_to_prepare'       => $request['time_to_prepare'],
+                    'level'                 => $request['level'],
+                    'calories'              => $request['calories'],
+                    'category_id'           => $request['category'],
+                    'ingredients'           => $request['ingredients'],
+                    'instructions'          => $request['instructions'],
+                    'video_url'             => $request['video_url'],
+                    'user_id'               => Auth::user()->id,
+                ]);
+
+                $date           = Carbon::now();
+                $targets        = array(' ', ':');
+                $date           = str_replace($targets, '-', $date);
+                $recipeName     = str_replace($targets, '-', $request->name);
+                $image          = $request->file('recipe_image');
+                $fileName       = 'Recipe-img-' . $recipeName . '-' . $date . '.' . $image->getClientOriginalExtension();
+                $img            = Image::make($image->getRealPath());
+
+                $img->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $img->stream(); // <-- Key point
+                $upload_image = Storage::disk('local')->put('public/recipe-imgs/'.$fileName, $img, 'public');
+
+                $update_image = $recipe->update([
+                    'image_url'   => 'storage/recipe-imgs/' . $fileName
+                ]);
+
+                return redirect()->back()->with([
+                    'type'     => 'success',
+                    'message'  => 'Receta guardada con exito'
+                ]);
+                
+            } catch (\Throwable $th) {
+                return redirect()->back()->with([
+                    'type'     => 'error',
+                    'message'  => 'Ocurrio un error durante el proceso \nError: ' . $th->getMessage(),
+                ]);
+            }
+
+        }
     }
 
     /**

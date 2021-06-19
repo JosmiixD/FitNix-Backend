@@ -43,6 +43,13 @@ class UserController extends Controller
                 'weight' => $fields['weight'],
             ]);
 
+            $user->refresh();
+
+            //Hide Unnecesary Fields in Role
+            $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
+            //Hide unnecesary user fields
+            $user->makeHidden(['deleted_at', 'created_at', 'updated_at', 'email_verified_at']);
+
 
             return response()->json([
                 'ok'        => true,

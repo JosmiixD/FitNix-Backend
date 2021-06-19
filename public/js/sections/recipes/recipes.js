@@ -28,13 +28,23 @@
             }
         },
         {
-            "field"     : 'url_video',
+            "field"     : 'video_url',
             "title"     : 'Video',
             "width"     : 200,
             "type"      : 'string',
             "textAlign" : 'center',
             template    : function(data) {
-                return `<a href="https://youtu.be/${data.url_video}" target="_blank" style="line-break: anywhere;">${data.name}</a>`;
+                return `<a href="${data.video_url}" target="_blank" style="line-break: anywhere;">Video</a>`;
+            }
+        },
+        {
+            "field"     : 'image_url',
+            "title"     : 'Imagen',
+            "width"     : 200,
+            "type"      : 'string',
+            "textAlign" : 'center',
+            template    : function(data) {
+                return `<a href="${HOST_URL}/${data.image_url}" target="_blank" style="line-break: anywhere;">Imagen</a>`;
             }
         },
         {
@@ -54,7 +64,7 @@
             }
         },
         {
-            "field"     : 'created_by',
+            "field"     : 'user_id',
             "title"     : 'Creador',
             "width"     : 200,
             "type"      : 'string',
@@ -64,8 +74,8 @@
             }
         },
         {
-            "field"     : 'created_by',
-            "title"     : 'Creador',
+            "field"     : 'category_id',
+            "title"     : 'Categoria',
             "width"     : 200,
             "type"      : 'string',
             "textAlign" : 'center',

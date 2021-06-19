@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\RecipesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //PUBLIC ROUTES 
 
 // AUTHENTICATION ROUTES
-Route::post('/register', [AuthController::class, 'register'])->name('user.create');
-Route::post('/login', [AuthController::class, 'login'])->name('user.login');
+Route::post('/register', [AuthController::class, 'register'])->name('api.user.create');
+Route::post('/login', [AuthController::class, 'login'])->name('api.user.login');
 
 
 
@@ -33,7 +34,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 // ROUTES PROTECTED BY AUTH:SANCTUM
 Route::group(['middleware' => 'auth:sanctum'], function() {
 
-    Route::post('/user/save-info', [UserController::class, 'saveInformation'])->name('user.save-info');
-    Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('token.renew');
+    Route::post('/user/save-info', [UserController::class, 'saveInformation'])->name('api.user.save-info');
+    Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
+
+
+    Route::get('/categories', [RecipesController::class, 'categories'])->name('api.categories.get');
+    Route::get('/recipes/{id}', [RecipesController::class, 'recipes'])->name('api.recipes.get');
 
 });

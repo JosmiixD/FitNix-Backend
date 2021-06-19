@@ -16,35 +16,39 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name'   => 'Popular',
-            'image'  => '/categories/star.png'
+            'image'  => 'storage/categories/star.png'
+        ]);
+        Category::create([
+            'name'  => 'Bajo en calorias',
+            'image' => 'storage/categories/low-carb.jpg',
         ]);
         Category::create([
             'name'  => 'Vegetariano',
-            'image' => '/categories/vegan.png',
+            'image' => 'storage/categories/vegan.png',
         ]);
         Category::create([
-            'name'  => 'Pasta',
-            'image' => '/categories/pasta.png',
+            'name'  => 'Almuerzos',
+            'image' => 'storage/categories/lunch.jpg',
         ]);
         Category::create([
             'name'  => 'Alto en proteina',
-            'image' => '/categories/protein.png',
+            'image' => 'storage/categories/high-protein.png',
         ]);
         Category::create([
             'name'  => 'Sushi',
-            'image' => '/categories/sushi.png',
+            'image' => 'storage/categories/sushi.jpg',
             ]);
         Category::create([
             'name'  => 'Bebidas',
-            'image' => '/categories/drink.png',
+            'image' => 'storage/categories/drink.jpg',
         ]);
         Category::create([
             'name'  => 'Snacks',
-            'image' => '/categories/snacks.png',
+            'image' => 'storage/categories/snacks.jpg',
         ]);
         Category::create([
             'name'  => 'Comida rapida',
-            'image' => '/categories/fast.png',
+            'image' => 'storage/categories/fast.jpg',
         ]);
     }
         

@@ -30,6 +30,7 @@ class User extends Authenticatable
         'gender',
         'level',
         'birthday',
+        'profile_picture'
     ];
 
     /**
@@ -60,5 +61,9 @@ class User extends Authenticatable
 
     public function weightLogs() {
         return $this->hasMany('App\Models\WeightLog');
+    }
+
+    public function recipesLiked() {
+        return $this->belongsToMany('App\Models\Recipe');
     }
 }

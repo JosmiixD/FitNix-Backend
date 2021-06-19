@@ -10,7 +10,7 @@
     <div class="d-flex flex-column-fluid">
         <div class="container">
             <div class="card card-custom card-stretch">
-                <form class="form" action="{{  route('recipes.store')  }}" method="POST">
+                <form class="form" action="{{  route('recipes.store')  }}" method="POST" enctype="multipart/form-data">
                     <!--begin::Body-->
                     <div class="card-body p-0">
                         <div class="card card-custom card-shadowless rounded-top-0">

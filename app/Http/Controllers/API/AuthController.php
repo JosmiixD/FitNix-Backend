@@ -29,9 +29,13 @@ class AuthController extends Controller
             'password'  => Hash::make( $fields['password'] ),
         ]);
 
+        $user->refresh();
+
         $user->assignRole('guest');
 
         $token = $user->createToken('authtoken')->plainTextToken;
+
+        
 
         //Hide Unnecesary Fields in Role
         $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
@@ -77,7 +81,6 @@ class AuthController extends Controller
             'ok'        => true,
             'message'   => 'Continua con tus objetivos',
             'user'      => $user,
-            // 'hasInfo'   => count( $user->weightLogs ) > 0 ? true : false,
             'token'     => $token,
         ], 200);
 

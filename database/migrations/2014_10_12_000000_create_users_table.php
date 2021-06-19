@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
@@ -23,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('height')->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->tinyInteger('level')->nullable();
-            $table->date('birthday')->nullable();
+            $table->date('birthday')->default( Carbon::parse('1900-01-01'));
+            $table->string('profile_picture')->default('none');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

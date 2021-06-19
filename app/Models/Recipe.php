@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Recipe extends Model
 {
@@ -16,18 +18,24 @@ class Recipe extends Model
         'calories',
         'ingredients',
         'instructions',
-        'url_video',
+        'video_url',
+        'image_url',
         'status',
-        'created_by',
+        'user_id',
         'category_id',
     ];
 
+    protected $with = ['user', 'category'];
 
     public function user() {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
     public function category() {
-        return $this->belongsTo('App\Models\Category','cateogory_id','id');
+        return $this->belongsTo(Category::class);
+    }
+
+    public function usersLikes() {
+        return $this->belongsToMany(User::class);
     }
 
     public function scopeGetRecipes( $query, $name_filter, $sort,$fieldToSort ){
