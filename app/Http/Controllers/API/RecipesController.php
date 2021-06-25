@@ -6,6 +6,7 @@ use App\Models\Recipe;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RecipesController extends Controller
 {
@@ -15,8 +16,30 @@ class RecipesController extends Controller
 
         try {
             
-            $recipes = Recipe::where('category_id', $id )->where('status', 1 )->get();
-            $recipes->makeHidden(['updated_at', 'status', 'user', 'category']);
+            $recipes = Recipe::where('category_id', $id )
+                        ->where('status', 1 )
+                        ->limit(10)
+                        ->get();
+            $targets = '\r\n';
+
+            
+
+            foreach ($recipes as $recipe ) {
+                if( !$recipe->isLikedByUser()->isEmpty() ) {
+
+                    $recipe->isLikedByUser = true;
+
+                }else {
+
+                    $recipe->isLikedByUser = false;
+
+                }
+
+                $recipe->creatorName    = $recipe->user->name;
+
+            }
+            
+            $recipes->makeHidden(['updated_at', 'status', 'user', 'category', 'recipeLike']);
 
             if( count( $recipes ) ) {
                 return response()->json([

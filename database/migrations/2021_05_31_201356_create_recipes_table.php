@@ -21,7 +21,7 @@ class CreateRecipesTable extends Migration
             $table->string('calories')->nullable();
             $table->text('ingredients');
             $table->text('instructions');
-            $table->string('video_url')->nullable();
+            $table->string('video_url')->default('none');
             $table->string('image_url')->default('public/recipe-imgs/no-image.png');
             $table->boolean('status')->default(0);
             $table->unsignedBigInteger('user_id');

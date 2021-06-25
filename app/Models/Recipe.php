@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,9 +32,22 @@ class Recipe extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
+
+
+    //ADDED
+    public function recipeLike() {
+        return $this->hasMany('App\Models\RecipeUser');
+    }
+
+    public function isLikedByUser() {
+        return $this->recipeLike->where('user_id', Auth::id());
+    }
+
+    // END ADDED
 
     public function usersLikes() {
         return $this->belongsToMany(User::class);

@@ -79,7 +79,7 @@ class RecipesController extends Controller
                 $fileName       = 'Recipe-img-' . $recipeName . '-' . $date . '.' . $image->getClientOriginalExtension();
                 $img            = Image::make($image->getRealPath());
 
-                $img->resize(400, 400, function ($constraint) {
+                $img->resize(600, 600, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 
