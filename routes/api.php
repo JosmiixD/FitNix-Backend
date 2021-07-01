@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RecipesController;
+use App\Http\Controllers\API\WorkoutsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,6 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     Route::get('/categories', [RecipesController::class, 'categories'])->name('api.categories.get');
     Route::get('/recipes/{id}', [RecipesController::class, 'recipes'])->name('api.recipes.get');
+    Route::get('/workouts', [WorkoutsController::class, 'workouts'])->name('api.workouts.get');
 
 });

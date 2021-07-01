@@ -16,8 +16,6 @@ class CreateExercisesTable extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->default('none');
-            $table->string('video_url')->default('none');
             $table->timestamps();
         });
     }

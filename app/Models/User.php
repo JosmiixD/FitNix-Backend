@@ -59,6 +59,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Recipe');
     }
 
+    //RELATION:: User has Many Workouts I.E. Josmar created ABS Workout
+    public function workouts() {
+        return $this->hasMany('App\Models\Workout');
+    }
+
+    
     public function weightLogs() {
         return $this->hasMany('App\Models\WeightLog');
     }

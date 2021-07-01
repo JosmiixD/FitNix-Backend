@@ -75,15 +75,17 @@ class RecipesController extends Controller
                 $targets        = array(' ', ':');
                 $date           = str_replace($targets, '-', $date);
                 $recipeName     = str_replace($targets, '-', $request->name);
+
                 $image          = $request->file('recipe_image');
-                $fileName       = 'Recipe-img-' . $recipeName . '-' . $date . '.' . $image->getClientOriginalExtension();
+                // $fileName       = 'Recipe-img-' . $recipeName . '-' . $date . '.' . $image->getClientOriginalExtension();
+                $fileName       = "Recipe-img-{$recipeName}-{$date}.{$image->getClientOriginalExtension()}";
                 $img            = Image::make($image->getRealPath());
 
                 $img->resize(600, 600, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 
-                $img->stream(); // <-- Key point
+                $img->stream(); // <-- Encodes the image
                 $upload_image = Storage::disk('local')->put('public/recipe-imgs/'.$fileName, $img, 'public');
 
                 $update_image = $recipe->update([

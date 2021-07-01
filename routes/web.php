@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\RecipesController;
+use App\Http\Controllers\Web\WorkoutsController;
 use App\Http\Controllers\Web\ChallengesController;
 
 /*
@@ -32,6 +33,9 @@ Route::group(['middleware' => ['role:superadmin']], function () {
 
     Route::get('/get-challenges', [ChallengesController::class, 'getChallenges'])->middleware(['auth'])->name('challenges.get');
     Route::resource('challenges', ChallengesController::class)->middleware(['auth'])->names('challenges');
+
+
+    Route::resource('workouts', WorkoutsController::class)->middleware(['auth'])->names('workouts');
 
 
     

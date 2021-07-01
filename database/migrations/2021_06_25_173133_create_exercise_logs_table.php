@@ -17,6 +17,8 @@ class CreateExerciseLogsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('exercise_id')->index();
             $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade');
+            $table->integer('sets');
+            $table->integer('reps');
             $table->float('weight');
             $table->timestamps();
         });
