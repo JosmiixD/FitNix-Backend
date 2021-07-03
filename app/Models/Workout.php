@@ -12,7 +12,8 @@ class Workout extends Model
     protected $fillable = [
         'name',
         'user_id',
-        'day'
+        'day',
+        'image_url',
     ];
 
     

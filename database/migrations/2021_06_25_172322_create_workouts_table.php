@@ -17,6 +17,7 @@ class CreateWorkoutsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('day');
+            $table->string('image_url')->default('none');
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
