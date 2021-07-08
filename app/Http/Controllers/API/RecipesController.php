@@ -15,14 +15,17 @@ class RecipesController extends Controller
     public function recipes( $id ) {
 
         try {
-            
-            $recipes = Recipe::where('category_id', $id )
-                        ->where('status', 1 )
-                        ->limit(10)
-                        ->get();
-            $targets = '\r\n';
 
+            $recipes = Recipe::where('category_id', $id)
+                ->where('status', 1)
+                ->limit(10)
+                ->get();
             
+            // $paginated = Recipe::where('category_id', $id )
+            //             ->where('status', 1 )
+            //             ->paginate(1);
+
+            // $recipes = $paginated->getCollection();            
 
             foreach ($recipes as $recipe ) {
                 if( !$recipe->isLikedByUser()->isEmpty() ) {

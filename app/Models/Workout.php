@@ -24,7 +24,7 @@ class Workout extends Model
     }
 
     //RELATION:: Workout Many to Many Exercise I.E. Workout has Many Exercise and Exercise can be in many Workouts
-    public function exercise() {
+    public function exercises() {
         return $this->belongsToMany('App\Models\Exercise');
     }
 }

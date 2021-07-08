@@ -24,7 +24,7 @@ class CategorySeeder extends Seeder
         ]);
         Category::create([
             'name'  => 'Vegetariano',
-            'image' => 'storage/categories/vegan.png',
+            'image' => 'storage/categories/vegan.jpg',
         ]);
         Category::create([
             'name'  => 'Almuerzos',

@@ -18,7 +18,7 @@ class WorkoutsController extends Controller
 
     public function workouts() {
 
-        $workouts = Auth::user()->workouts()->with('exercise')->get();
+        $workouts = Auth::user()->workouts()->with('exercises')->get();
         
 
         return response()->json([
@@ -54,10 +54,9 @@ class WorkoutsController extends Controller
                         'weight'    => $exercise->weight,
                     ]);
     
-                    $workout->exercise()->attach( $newExercise->id );
+                    $workout->exercises()->attach( $newExercise->id );
     
                 }
-
 
                 //If User sends an image
 
@@ -80,7 +79,7 @@ class WorkoutsController extends Controller
                     $upload_image = Storage::disk('local')->put('public/workouts/'.$fileName, $img, 'public');
 
                     $update_image = $workout->update([
-                        'image_url'   => 'storage/recipe-imgs/' . $fileName
+                        'image_url'   => 'storage/workouts/' . $fileName
                     ]);
 
                 }
