@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/recipes/{id}', [RecipesController::class, 'recipes'])->name('api.recipes.get');
 
     Route::get('/workouts', [WorkoutsController::class, 'workouts'])->name('api.workouts.get');
-    Route::post('/workouts', [WorkoutsController::class, 'store'])->name('api.workouts.store');
+    Route::post('/workout', [WorkoutsController::class, 'store'])->name('api.workouts.store');
+    Route::post('/update-workout', [WorkoutsController::class, 'update'])->name('api.workouts.update');
 
 });

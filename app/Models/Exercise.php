@@ -11,6 +11,7 @@ class Exercise extends Model
 
     protected $fillable = [
         'name',
+        'order'
     ];
 
     protected $hidden = [ 'pivot','created_at', 'updated_at'];
